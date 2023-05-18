@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        Alata: ['Alata', 'sans-serif']
+        Alata: ['Alata', 'sans-serif'],
+        Allura: ['Allura', 'sans-serif']
       }
     }
   },
