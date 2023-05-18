@@ -1,5 +1,5 @@
 import React from 'react'
-import background from '../assets/background.jpg'
+import background from '../assets/background.png'
 import { Link } from 'react-router-dom'
 
 function HomePage (): JSX.Element {
