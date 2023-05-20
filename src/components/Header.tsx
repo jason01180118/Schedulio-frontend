@@ -14,7 +14,7 @@ function Header (): JSX.Element {
         <Link className="fontsize-bigtitle font-Allura px-[5%]" to="/">Schedulio</Link>
         {links.map((item) => <li key={item.title}><Link className="fontsize-content font-Alata" to={item.to}>{item.title}</Link></li>)}
       </ul>
-    <Link className='w-[45%] font-Alata text-right' to="/login">sign in</Link>
+    <Link className='w-[45%] fontsize-content font-Alata text-right' to="/login">sign in</Link>
 
     </ul>
 

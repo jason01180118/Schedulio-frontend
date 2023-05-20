@@ -12,3 +12,12 @@ export const sendMail = async (mail: string): Promise<AxiosResponse<any, any>> =
     }
   })
 }
+
+export const logIn = async (account: string, password: string): Promise<AxiosResponse<any, any>> => {
+  return await instance.post('/sign_up', {
+    data: {
+      account,
+      password
+    }
+  })
+}

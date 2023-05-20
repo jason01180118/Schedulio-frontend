@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { logIn } from '../server/aixos'
 import { Link } from 'react-router-dom'
 
-function SignPage (): JSX.Element {
+function RegisterPage (): JSX.Element {
   const [errMsg, setErrMsg] = useState('')
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
@@ -25,7 +25,7 @@ function SignPage (): JSX.Element {
         <label className='fontsize-title font-Alata mb-8' htmlFor='password'>password</label>
         <input className='fontsize-title font-Alata mb-8 border' name='password' type='password'></input>
         <input className='fontsize-title font-Alata mb-8' type='submit'></input>
-        <Link to="/register" className='fontsize-title font-Alata mb-8'>register</Link>
+        <Link to="/login" className='fontsize-title font-Alata mb-8'>login</Link>
         <p className='fontsize-title font-Alata mb-8'>{errMsg}</p>
       </form>
 
@@ -33,4 +33,4 @@ function SignPage (): JSX.Element {
   )
 }
 
-export default SignPage
+export default RegisterPage

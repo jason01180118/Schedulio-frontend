@@ -7,6 +7,7 @@ import LoginPage from './page/LoginPage'
 import LinkPage from './page/LinkPage'
 import CalendarPage from './page/CalendarPage'
 import HomePage from './page/HomePage'
+import RegisterPage from './page/RegisterPage'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: 'calendar',
         element: <CalendarPage />
+      },
+      {
+        path: 'register',
+        element: <RegisterPage />
       }
     ]
   }
