@@ -1,33 +1,62 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Paper from '@mui/material/Paper'
-import { ViewState } from '@devexpress/dx-react-scheduler'
+import { ViewState, EditingState, IntegratedEditing, type ChangeSet } from '@devexpress/dx-react-scheduler'
 import {
   Scheduler,
   WeekView,
   Appointments,
   Toolbar,
   DateNavigator,
-  TodayButton
+  TodayButton, ConfirmationDialog, AppointmentTooltip, AppointmentForm
 } from '@devexpress/dx-react-scheduler-material-ui'
+import appointment from '../components/today-appointments'
+
+// export interface ChangeSet {
+
+//   added?: {
+//     startDate: string
+//     endDate: string
+//     title: string
+//   };
+//   /** An associative array that stores changes made to existing data. Each array item specifies changes made to a row. The item's key specifies the associated row's ID. */
+//   changed?: {
+//     [key: string]: any;
+//   };
+//   /** An array of IDs representing rows to be deleted. */
+//   deleted?: number | string;
+// }
 
 function CalendarPage (): JSX.Element {
-  const schedulerData = [
-    { startDate: '2023-05-23T09:45', endDate: '2023-05-23T11:00', title: 'Meeting' },
-    { startDate: '2023-05-23T12:00', endDate: '2023-05-23T13:30', title: 'Go to a gym' },
-    { startDate: '2023-05-24T12:00', endDate: '2023-05-24T13:30', title: 'Go to a gym' }
-  ]
-
+  const [schedulerData] = useState(appointment)
+  function commitChanges ({ added }: ChangeSet): void {
+    // let data = schedulerData
+    // if (added != null) {
+    //   const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0
+    //   data = [...data, { ...added, id: startingAddedId }]
+    // }
+    // setSchedulerData(data)
+  }
   return (
     <div className='absolute w-full h-[92%] flex justify-center items-center'>
       <Paper className='w-[80%] h-[70%]'>
         <Scheduler data={schedulerData}>
           <ViewState defaultCurrentDate={new Date()}/>
+          <EditingState
+            onCommitChanges={commitChanges}
+          />
+          <IntegratedEditing />
           <WeekView startDayHour={9} endDayHour={24}/>
           <Toolbar />
           <DateNavigator />
           <TodayButton />
           <Appointments />
-
+          <ConfirmationDialog />
+          <Appointments />
+          <AppointmentTooltip
+            showOpenButton
+            showDeleteButton
+          />
+          <AppointmentForm readOnly/>
         </Scheduler>
       </Paper>
     </div>
