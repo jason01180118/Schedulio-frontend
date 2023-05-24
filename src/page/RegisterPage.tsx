@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { logIn } from '../server/aixos'
+import { signUp } from '../server/aixos'
 import { Link } from 'react-router-dom'
 
 function RegisterPage (): JSX.Element {
@@ -15,7 +15,7 @@ function RegisterPage (): JSX.Element {
     const password = target.password.value
     const passwordAgain = target.passwordAgain.value
     if (password === passwordAgain) {
-      logIn(account, password).then(() => {
+      signUp(account, password).then(() => {
         setErrMsg('success')
       }).catch((err) => {
         setErrMsg(err.message)
