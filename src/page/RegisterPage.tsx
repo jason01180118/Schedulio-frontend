@@ -15,7 +15,7 @@ function RegisterPage (): JSX.Element {
     const password = target.password.value
     const passwordAgain = target.passwordAgain.value
     if (password === passwordAgain) {
-      signUp(account, password).then(() => {
+      signUp(account, password).then((res) => {
         setErrMsg('success')
       }).catch((err) => {
         setErrMsg(err.message)

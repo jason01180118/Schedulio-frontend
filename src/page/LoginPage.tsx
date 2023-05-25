@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { logIn } from '../server/aixos'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
 
 function SignPage (): JSX.Element {
+  const [cookies, setCookie] = useCookies(['token'])
   const [errMsg, setErrMsg] = useState('')
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
@@ -12,16 +14,23 @@ function SignPage (): JSX.Element {
     }
     const account = target.account.value
     const password = target.password.value
-    logIn(account, password).then(() => {
+    logIn(account, password).then((res) => {
+      console.log(res.data)
+      setCookie('token', res.data, { maxAge: 3600 })
+      console.log(cookies.token)
       setErrMsg('success')
     }).catch((err) => {
       setErrMsg(err.message)
     })
   }
-  return (
+  if (cookies.token !== undefined) {
+    console.log(cookies.token)
+    return <Navigate to='/' />
+  } else {
+    return (
     <div className='absolute w-full h-[92%] flex flex-col justify-center items-center'>
       <p className='fontsize-bigtitle font-Alata mb-4'>sign in</p>
-      <form className='w-[40%] h-[50%] bg-white rounded-xl flex flex-col items-center justify-center' onSubmit={handleSubmit}>
+      <form className='w-[40%] h-[60%] bg-white rounded-xl flex flex-col items-center justify-center' onSubmit={handleSubmit}>
         <label className='fontsize-title font-Alata mb-4' htmlFor='account'>account</label>
         <input className='fontsize-title font-Alata mb-4 border' name='account' type='text'></input>
         <label className='fontsize-title font-Alata mb-4' htmlFor='password'>password</label>
@@ -32,7 +41,8 @@ function SignPage (): JSX.Element {
       </form>
 
     </div>
-  )
+    )
+  }
 }
 
 export default SignPage
