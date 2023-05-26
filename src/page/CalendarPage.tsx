@@ -38,7 +38,7 @@ function CalendarPage (): JSX.Element {
   }
   return (
     <div className='absolute w-full h-[92%] flex justify-center items-center'>
-      <Paper className='w-[80%] h-[70%]'>
+      <Paper className='w-[90%] h-[85%]'>
         <Scheduler data={schedulerData}>
           <ViewState defaultCurrentDate={new Date()}/>
           <EditingState
