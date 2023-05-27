@@ -7,7 +7,7 @@ import {
   Appointments,
   Toolbar,
   DateNavigator,
-  TodayButton, ConfirmationDialog, AppointmentTooltip, AppointmentForm
+  TodayButton, ConfirmationDialog, AppointmentTooltip, AppointmentForm, EditRecurrenceMenu
 } from '@devexpress/dx-react-scheduler-material-ui'
 import appointment from '../components/today-appointments'
 
@@ -29,6 +29,7 @@ import appointment from '../components/today-appointments'
 function CalendarPage (): JSX.Element {
   const [schedulerData] = useState(appointment)
   function commitChanges ({ added }: ChangeSet): void {
+    console.log(123)
     // let data = schedulerData
     // if (added != null) {
     //   const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0
@@ -40,21 +41,19 @@ function CalendarPage (): JSX.Element {
     <div className='absolute w-full h-[92%] flex justify-center items-center'>
       <Paper className='w-[90%] h-[85%]'>
         <Scheduler data={schedulerData}>
-          <ViewState defaultCurrentDate={new Date()}/>
+          <ViewState/>
           <EditingState
             onCommitChanges={commitChanges}
           />
           <IntegratedEditing />
+          <EditRecurrenceMenu />
           <WeekView startDayHour={9} endDayHour={24}/>
           <Toolbar />
           <DateNavigator />
           <TodayButton />
           <Appointments />
           <ConfirmationDialog />
-          <Appointments />
           <AppointmentTooltip
-            showOpenButton
-            showDeleteButton
           />
           <AppointmentForm readOnly/>
         </Scheduler>

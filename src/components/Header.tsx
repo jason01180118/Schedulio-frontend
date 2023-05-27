@@ -19,7 +19,7 @@ function Header (): JSX.Element {
   }, [cookies.token])
 
   return (
-    <ul className="h-[8%] w-full border-b shadow-sm flex items-center">
+    <ul className="h-[8%] w-full border-b shadow-sm flex items-center justify-between">
       <ul className="w-[45%] h-full ml-[5%] flex items-center justify-evenly">
         <Link className="h-[50%] fontsize-bigtitle font-Allura px-[5%]" to="/">Schedulio</Link>
         {links.map((item) => <li key={item.title}><Link className="fontsize-content font-Alata" to={item.to}>{item.title}</Link></li>)}

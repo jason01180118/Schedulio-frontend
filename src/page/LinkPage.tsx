@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { sendMail } from '../server/aixos'
 
 function LinkPage (): JSX.Element {
@@ -16,13 +15,11 @@ function LinkPage (): JSX.Element {
   }
   return (
 
-    <div>
-      <p className="text-5xl">hello world</p>
-      <input value={value} onInput={handleInput}/>
-      <button onClick={testMail}>send</button>
-
-      <Link to="/">back</Link>
-    </div>
+    <form className='absolute w-full h-[92%] flex flex-col justify-center items-center' onSubmit={testMail}>
+      <p className='my-4 text-3xl font-Alata'>請輸入對方email</p>
+      <input className='my-4 w-[18%] h-[6%] rounded-2xl' value={value} onInput={handleInput}/>
+      <input type='submit' className='w-24 my-4 text-3xl font-Alata cursor-pointer bg-gray-200 rounded-3xl shadow.lg' value="send"></input>
+    </form>
   )
 }
 
