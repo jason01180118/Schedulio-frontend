@@ -61,7 +61,7 @@ function CalendarPage (): JSX.Element {
   return (
     <div className='absolute w-full h-[92%] flex flex-col justify-center items-center'>
       <p className='fontsize-bigtitle text-black font-Alata mb-4 text-left'>My Calendar</p>
-      <Paper className='w-[90%] h-[80%]'>
+      <Paper className='w-[90%] h-[70%]'>
         <Scheduler data={schedulerData}>
           <ViewState/>
           <EditingState
@@ -81,6 +81,12 @@ function CalendarPage (): JSX.Element {
           <AllDayPanel />
         </Scheduler>
       </Paper>
+      {
+      cookies.session !== undefined
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        ? <a className='my-3 w-[6%] h-[5%] fontsize-content font-Alata flex justify-center items-center bg-blue-300 rounded-3xl shadow-lg'href={`http://127.0.0.1:8000/add_email?session=${cookies.session}`} target='_blank' rel="noreferrer">+add</a>
+        : <></>
+      }
     </div>
   )
 }

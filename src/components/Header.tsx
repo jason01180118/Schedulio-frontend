@@ -30,12 +30,6 @@ function Header (): JSX.Element {
         : <Link className='w-[6%] h-[50%] fontsize-content font-Alata mx-12 flex justify-center items-center bg-green-200 rounded-3xl' to="/login">Sign In</Link>
 
     }
-    {
-      cookies.session !== undefined
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        ? <a href={`http://127.0.0.1:8000/add_email?session=${cookies.session}`} target='_blank' rel="noreferrer">world</a>
-        : <></>
-    }
 
     </ul>
 
