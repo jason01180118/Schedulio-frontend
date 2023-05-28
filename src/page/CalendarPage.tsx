@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Paper from '@mui/material/Paper'
 import { ViewState, EditingState, IntegratedEditing, type ChangeSet } from '@devexpress/dx-react-scheduler'
 import {
@@ -9,7 +9,8 @@ import {
   DateNavigator,
   TodayButton, ConfirmationDialog, AppointmentTooltip, AppointmentForm, EditRecurrenceMenu
 } from '@devexpress/dx-react-scheduler-material-ui'
-import appointment from '../components/today-appointments'
+import { getCalendar } from '../server/aixos'
+import { useCookies } from 'react-cookie'
 
 // export interface ChangeSet {
 
@@ -27,9 +28,9 @@ import appointment from '../components/today-appointments'
 // }
 
 function CalendarPage (): JSX.Element {
-  const [schedulerData] = useState(appointment)
+  const [schedulerData, setSchedulerData]: any[] = useState([])
+  const [cookies] = useCookies(['session'])
   function commitChanges ({ added }: ChangeSet): void {
-    console.log(123)
     // let data = schedulerData
     // if (added != null) {
     //   const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0
@@ -37,6 +38,24 @@ function CalendarPage (): JSX.Element {
     // }
     // setSchedulerData(data)
   }
+  useEffect(() => {
+    getCalendar(cookies.session).then((res) => {
+      console.log(res.data)
+      let buffer: any[] = []
+      Object.values(res.data).forEach((value) => {
+        console.log(value)
+        buffer = buffer.concat(value)
+      })
+      setSchedulerData(buffer)
+    }).catch((err) => { console.log(err) })
+  }, [])
+  useEffect(() => {
+    console.log(schedulerData)
+    schedulerData.forEach((element: { startDate: string | Date, endDate: string | Date }) => {
+      element.startDate = new Date(element.startDate)
+      element.endDate = new Date(element.endDate)
+    })
+  }, [schedulerData])
   return (
     <div className='absolute w-full h-[92%] flex flex-col justify-center items-center'>
       <p className='fontsize-bigtitle text-black font-Alata mb-4 text-left'>My Calendar</p>

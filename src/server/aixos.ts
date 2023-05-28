@@ -31,6 +31,6 @@ export const signUp = async (account: string, password: string): Promise<AxiosRe
   })
 }
 
-export const addCalendar = async (): Promise<AxiosResponse<any, any>> => {
-  return await instance.get('/add_calendar')
+export const getCalendar = async (session: string): Promise<AxiosResponse<any, any>> => {
+  return await instance.get('/get_calendar', { params: { session } })
 }

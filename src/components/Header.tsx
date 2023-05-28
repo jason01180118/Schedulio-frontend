@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
-import { addCalendar } from '../server/aixos'
 
 function Header (): JSX.Element {
   const [cookies,, removeCookie] = useCookies(['session'])
@@ -34,11 +33,9 @@ function Header (): JSX.Element {
     {
       cookies.session !== undefined
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        ? <a href={`http://127.0.0.1:8000/add_calendar?session=${cookies.session}`} target='_blank' rel="noreferrer">world</a>
+        ? <a href={`http://127.0.0.1:8000/add_email?session=${cookies.session}`} target='_blank' rel="noreferrer">world</a>
         : <></>
     }
-
-    <button onClick={() => { addCalendar().catch((err) => { console.log(err) }) }}>hello</button>
 
     </ul>
 
