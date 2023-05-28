@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Paper from '@mui/material/Paper'
-import { ViewState, EditingState, IntegratedEditing, type ChangeSet } from '@devexpress/dx-react-scheduler'
+import { ViewState } from '@devexpress/dx-react-scheduler'
 import {
   Scheduler,
   WeekView,
   Appointments,
   Toolbar,
   DateNavigator,
-  TodayButton, ConfirmationDialog, AppointmentTooltip, AppointmentForm, EditRecurrenceMenu, AllDayPanel
+  TodayButton, AllDayPanel
 } from '@devexpress/dx-react-scheduler-material-ui'
 import { getCalendar } from '../server/aixos'
 import { useCookies } from 'react-cookie'
@@ -32,14 +32,6 @@ function CalendarPage (): JSX.Element {
   const [schedulerData, setSchedulerData]: any[] = useState([])
   const [cookies] = useCookies(['session'])
   const { account } = useParams()
-  function commitChanges ({ added }: ChangeSet): void {
-    // let data = schedulerData
-    // if (added != null) {
-    //   const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0
-    //   data = [...data, { ...added, id: startingAddedId }]
-    // }
-    // setSchedulerData(data)
-  }
   useEffect(() => {
     getCalendar(cookies.session, account === undefined ? '' : account).then((res) => {
       console.log(res.data)
@@ -64,20 +56,11 @@ function CalendarPage (): JSX.Element {
       <Paper className='w-[90%] h-[70%]'>
         <Scheduler data={schedulerData}>
           <ViewState/>
-          <EditingState
-            onCommitChanges={commitChanges}
-          />
-          <IntegratedEditing />
-          <EditRecurrenceMenu />
           <WeekView startDayHour={9} endDayHour={24}/>
           <Toolbar />
           <DateNavigator />
           <TodayButton />
           <Appointments />
-          <ConfirmationDialog />
-          <AppointmentTooltip
-          />
-          <AppointmentForm readOnly/>
           <AllDayPanel />
         </Scheduler>
       </Paper>
