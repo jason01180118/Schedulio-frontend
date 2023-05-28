@@ -43,6 +43,9 @@ function CalendarPage (): JSX.Element {
       setSchedulerData(buffer)
     }).catch((err) => { console.log(err) })
   }, [])
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+
+  }
   useEffect(() => {
     console.log(schedulerData)
     schedulerData.forEach((element: { startDate: string | Date, endDate: string | Date }) => {
@@ -51,9 +54,9 @@ function CalendarPage (): JSX.Element {
     })
   }, [schedulerData])
   return (
-    <div className='absolute w-full h-[92%] flex flex-col justify-center items-center'>
-      <p className='fontsize-bigtitle text-black font-Alata mb-4 text-left'>My Calendar</p>
-      <Paper className='w-[90%] h-[70%]'>
+    <div className='absolute w-full h-[92%] flex flex-col items-center overflow-y-scroll'>
+      <p className='fontsize-bigtitle text-black font-Alata mb-4 text-left'>{account === undefined ? 'My' : account} Calendar</p>
+      <Paper className='w-[90%] h-[80%]'>
         <Scheduler data={schedulerData}>
           <ViewState/>
           <WeekView startDayHour={9} endDayHour={24}/>
@@ -65,9 +68,22 @@ function CalendarPage (): JSX.Element {
         </Scheduler>
       </Paper>
       {
-      cookies.session !== undefined
+      cookies.session !== undefined && account === undefined
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         ? <a className='my-3 w-[6%] h-[5%] fontsize-content font-Alata flex justify-center items-center bg-blue-300 rounded-3xl shadow-lg' href={`http://127.0.0.1:8000/add_email?session=${cookies.session}`}>+add</a>
+        : <></>
+      }
+      {
+      cookies.session !== undefined && account !== undefined
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        ? <form className='absolute top-[88%] my-3 w-full h-[80%] flex flex-col justify-center items-center' onSubmit={handleSubmit}>
+            <p className='fontsize-title font-Alata mb-1'>invite</p>
+            <label className='fontsize-content font-Alata mb-1' htmlFor='title'>title</label>
+            <input className='fontsize-content font-Alata mb-2 w-[40%] h-[5%] mx-12 flex justify-center items-center rounded-3xl bg-white bg-opacity-80' name='title' type='text'></input>
+            <label className='fontsize-content font-Alata mb-1' htmlFor='content'>content</label>
+            <textarea className='fontsize-content font-Alata mb-4 w-[40%] h-[5%] mx-12 flex justify-center items-center rounded-3xl bg-white bg-opacity-80' name='content'></textarea>
+            <input className='fontsize-title font-Alata mb-2 w-[10%] h-[5%] mx-12 flex justify-center items-center bg-green-200 rounded-3xl shadow-md' type='submit' value="Sign In"></input>
+          </form>
         : <></>
       }
     </div>
