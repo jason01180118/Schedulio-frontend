@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie'
 import register from '../assets/register.png'
 
 function RegisterPage (): JSX.Element {
-  const [cookies] = useCookies(['token'])
+  const [cookies] = useCookies(['session'])
   const [errMsg, setErrMsg] = useState('')
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
@@ -33,8 +33,8 @@ function RegisterPage (): JSX.Element {
     }
     initValues()
   }
-  if (cookies.token !== undefined) {
-    console.log(cookies.token)
+  if (cookies.session !== undefined) {
+    console.log(cookies.session)
     return <Navigate to='/' />
   } else if (errMsg === 'success') {
     return <Navigate to='/login' />
