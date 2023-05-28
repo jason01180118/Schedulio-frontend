@@ -11,6 +11,7 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui'
 import { getCalendar } from '../server/aixos'
 import { useCookies } from 'react-cookie'
+import { useParams } from 'react-router-dom'
 
 // export interface ChangeSet {
 
@@ -30,6 +31,7 @@ import { useCookies } from 'react-cookie'
 function CalendarPage (): JSX.Element {
   const [schedulerData, setSchedulerData]: any[] = useState([])
   const [cookies] = useCookies(['session'])
+  const { account } = useParams()
   function commitChanges ({ added }: ChangeSet): void {
     // let data = schedulerData
     // if (added != null) {
@@ -39,7 +41,7 @@ function CalendarPage (): JSX.Element {
     // setSchedulerData(data)
   }
   useEffect(() => {
-    getCalendar(cookies.session).then((res) => {
+    getCalendar(cookies.session, account === undefined ? '' : account).then((res) => {
       console.log(res.data)
       let buffer: any[] = []
       Object.values(res.data).forEach((value) => {

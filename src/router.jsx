@@ -31,6 +31,10 @@ const router = createBrowserRouter([
         element: <CalendarPage />
       },
       {
+        path: 'calendar/:account',
+        element: <CalendarPage />
+      },
+      {
         path: 'register',
         element: <RegisterPage />
       }
