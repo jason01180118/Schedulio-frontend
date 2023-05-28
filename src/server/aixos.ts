@@ -13,6 +13,15 @@ export const sendMail = async (mail: string): Promise<AxiosResponse<any, any>> =
   })
 }
 
+export const sendInvite = async (mail: string): Promise<AxiosResponse<any, any>> => {
+  return await instance.get('/mail/invite', {
+    params: {
+      token: process.env.REACT_APP_TOKEN,
+      email: mail
+    }
+  })
+}
+
 export const logIn = async (account: string, password: string): Promise<AxiosResponse<any, any>> => {
   return await instance.post('/log_in', {
     data: {
