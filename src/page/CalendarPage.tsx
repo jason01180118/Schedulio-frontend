@@ -9,7 +9,7 @@ import {
   DateNavigator,
   TodayButton, AllDayPanel
 } from '@devexpress/dx-react-scheduler-material-ui'
-import { getCalendar, sendInvite } from '../server/aixos'
+import { getCalendar, sendInvite } from '../server/axios'
 import { useCookies } from 'react-cookie'
 import { Navigate, useParams } from 'react-router-dom'
 
