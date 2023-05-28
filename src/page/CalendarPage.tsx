@@ -72,15 +72,33 @@ function CalendarPage (): JSX.Element {
         {
           account !== undefined
           // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            ? <form className='absolute top-[88%] my-3 w-full h-[80%] flex flex-col justify-center items-center overflow-y-scroll' onSubmit={handleSubmit}>
-              <p className='fontsize-title font-Alata mb-1'>invite</p>
-              <label className='fontsize-content font-Alata mb-1' htmlFor='title'>title</label>
-              <input className='fontsize-content font-Alata mb-2 w-[40%] h-[5%] mx-12 flex justify-center items-center rounded-3xl bg-white bg-opacity-80' name='title' type='text'></input>
-              <label className='fontsize-content font-Alata mb-1' htmlFor='content'>content</label>
-              <textarea className='fontsize-content font-Alata mb-4 w-[40%] h-[5%] mx-12 flex justify-center items-center rounded-3xl bg-white bg-opacity-80' name='content'></textarea>
-              <input className='fontsize-title font-Alata mb-2 w-[10%] h-[5%] mx-12 flex justify-center items-center bg-green-200 rounded-3xl shadow-md' type='submit' value="Sign In"></input>
-              <input className='' name='startDate'></input>
-              <input className='' name='endDate'></input>
+            ? <form className='absolute top-[80%] w-full h-full flex flex-col justify-center items-center' onSubmit={handleSubmit}>
+                <p className='absolute top-[12%] left-[5%] fontsize-bigtitle font-Alata flex'>Send Your Reservation</p>
+                <div className='absolute top-[20%] w-[90%] h-[70%] flex flex-col justify-start items-center bg-white bg-opacity-80 rounded-3xl'>
+                  <div className='absolute top-[10%] my-4 w-[90%] h-[70%] flex flex-col justify-start items-start'>
+                  <div className='flex flex-vol w-full'>
+                  <div className='w-[25%]'>
+                  <label className='fontsize-content font-Alata mb-6' htmlFor='title'>Title</label>
+                  </div>
+                  <input className='fontsize-content font-Alata mb-6 w-full h-[90%] mx-6 flex justify-center items-center bg-white' name='title' type='text'></input>
+                  </div>
+                  <div className='flex flex-vol w-full'>
+                  <div className='w-[20%]'>
+                  <label className='fontsize-content font-Alata mb-6' htmlFor='title'>Start Time</label>
+                  </div>
+                  <input className='fontsize-content font-Alata mb-6 w-[80%] h-[90%] mx-6 flex justify-center items-center bg-white' name='startDate'></input>
+                  </div>
+                  <div className='flex flex-vol w-full'>
+                  <div className='w-[20%]'>
+                  <label className='fontsize-content font-Alata mb-6' htmlFor='title'>End Time</label>
+                  </div>
+                  <input className='fontsize-content font-Alata mb-6 w-[80%] h-[90%] mx-6 flex justify-center items-center bg-white' name='endDate'></input>
+                  </div>
+                  <label className='fontsize-content font-Alata mb-6 w-full' htmlFor='content'>Describtion</label>
+                  <textarea className='fontsize-content font-Alata mb-6 left-full mb-4 w-[95%] h-full mx-10 justify-start items-start bg-white' name='content'></textarea>
+                  <input className='fontsize-title font-Alata mb-6 w-full h-[20%] flex justify-center items-center underline' type='submit' value="Send Reservation"></input>
+                  </div>
+                </div>
             </form>
             : <></>
         }
