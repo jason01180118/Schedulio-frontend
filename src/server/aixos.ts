@@ -14,7 +14,6 @@ export const sendMail = async (mail: string): Promise<AxiosResponse<any, any>> =
 }
 
 export const sendInvite = async (session: string, title: string, content: string, startDate: string, endDate: string, account: string): Promise<AxiosResponse<any, any>> => {
-  console.log(title, content, startDate, endDate, account)
   return await instance.post(`/mail/invite?session=${session}`, {
     data: {
       title,
