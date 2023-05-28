@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { signUp } from '../server/aixos'
+import { signUp } from '../server/axios'
 import { Link, Navigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import register from '../assets/register.png'
