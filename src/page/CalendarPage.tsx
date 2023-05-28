@@ -75,7 +75,7 @@ function CalendarPage (): JSX.Element {
     })
   }, [schedulerData])
   useEffect(() => { console.log(startDate, endDate) }, [startDate])
-  if (cookies.session !== undefined) {
+  if (cookies.session === undefined) {
     return <Navigate to='/login' />
   } else {
     return (

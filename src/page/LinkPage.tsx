@@ -8,7 +8,7 @@ function LinkPage (): JSX.Element {
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setValue(e.target.value)
   }
-  if (cookies.session !== undefined) {
+  if (cookies.session === undefined) {
     return <Navigate to='/login' />
   } else {
     return (
