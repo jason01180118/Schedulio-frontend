@@ -4,20 +4,20 @@ import { useCookies } from 'react-cookie'
 import { addCalendar } from '../server/aixos'
 
 function Header (): JSX.Element {
-  const [cookies,, removeCookie] = useCookies(['token'])
+  const [cookies,, removeCookie] = useCookies(['session'])
   const [login, setLogin] = useState(false)
   const links = [
     { title: 'My Calendar', to: '/calendar' },
-    { title: 'Other Calender', to: '/link' }
+    { title: 'Other Calendar', to: '/link' }
 
   ]
   useEffect(() => {
-    if (cookies.token !== undefined) {
+    if (cookies.session !== undefined) {
       setLogin(true)
     } else {
       setLogin(false)
     }
-  }, [cookies.token])
+  }, [cookies.session])
 
   return (
     <ul className="h-[8%] w-full border-b shadow-sm flex items-center justify-between">
@@ -27,8 +27,8 @@ function Header (): JSX.Element {
       </ul>
     {
       login
-        ? <button className='w-[45%] fontsize-content font-Alata text-right' onClick={() => { removeCookie('token'); console.log(cookies.token) }}>logout</button>
-        : <Link className='w-[6%] fontsize-content font-Alata mx-12 flex justify-center items-center bg-green-200 rounded-3xl' to="/login">Sign In</Link>
+        ? <button className='w-[7%] h-[50%] fontsize-content font-Alata mx-12 flex justify-center items-center bg-green-200 rounded-3xl' onClick={() => { removeCookie('session'); console.log(cookies.session) }}>Log Out</button>
+        : <Link className='w-[6%] h-[50%] fontsize-content font-Alata mx-12 flex justify-center items-center bg-green-200 rounded-3xl' to="/login">Sign In</Link>
 
     }
     <a href='http://127.0.0.1:8000/add_calendar' target='_blank' rel="noreferrer">world</a>

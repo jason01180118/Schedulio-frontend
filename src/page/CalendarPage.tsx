@@ -38,8 +38,9 @@ function CalendarPage (): JSX.Element {
     // setSchedulerData(data)
   }
   return (
-    <div className='absolute w-full h-[92%] flex justify-center items-center'>
-      <Paper className='w-[90%] h-[85%]'>
+    <div className='absolute w-full h-[92%] flex flex-col justify-center items-center'>
+      <p className='fontsize-bigtitle text-black font-Alata mb-4 text-left'>My Calendar</p>
+      <Paper className='w-[90%] h-[80%]'>
         <Scheduler data={schedulerData}>
           <ViewState/>
           <EditingState

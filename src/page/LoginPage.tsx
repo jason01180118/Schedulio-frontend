@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie'
 import user from '../assets/user.png'
 
 function SignPage (): JSX.Element {
-  const [cookies, setCookie] = useCookies(['token'])
+  const [cookies, setCookie] = useCookies(['session'])
   const [errMsg, setErrMsg] = useState('')
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
@@ -21,16 +21,16 @@ function SignPage (): JSX.Element {
     const password = target.password.value
     logIn(account, password).then((res) => {
       console.log(res.data)
-      setCookie('token', res.data, { maxAge: 3600 })
-      console.log(cookies.token)
+      setCookie('session', res.data, { maxAge: 3600 })
+      console.log(cookies.session)
       setErrMsg('success')
     }).catch((err) => {
       setErrMsg(err.message)
     })
     initValues()
   }
-  if (cookies.token !== undefined) {
-    console.log(cookies.token)
+  if (cookies.session !== undefined) {
+    console.log(cookies.session)
     return <Navigate to='/' />
   } else {
     return (
