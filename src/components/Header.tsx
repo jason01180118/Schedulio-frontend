@@ -7,7 +7,7 @@ function Header (): JSX.Element {
   const [login, setLogin] = useState(false)
   const links = [
     { title: 'My Calendar', to: '/calendar' },
-    { title: 'Other Calender', to: '/link' }
+    { title: 'Other Calendar', to: '/link' }
 
   ]
   useEffect(() => {
@@ -26,8 +26,8 @@ function Header (): JSX.Element {
       </ul>
     {
       login
-        ? <button className='w-[45%] fontsize-content font-Alata text-right' onClick={() => { removeCookie('token'); console.log(cookies.token) }}>logout</button>
-        : <Link className='w-[6%] fontsize-content font-Alata mx-12 flex justify-center items-center bg-green-200 rounded-3xl' to="/login">Sign In</Link>
+        ? <button className='w-[7%] h-[50%] fontsize-content font-Alata mx-12 flex justify-center items-center bg-green-200 rounded-3xl' onClick={() => { removeCookie('token'); console.log(cookies.token) }}>Log Out</button>
+        : <Link className='w-[6%] h-[50%] fontsize-content font-Alata mx-12 flex justify-center items-center bg-green-200 rounded-3xl' to="/login">Sign In</Link>
 
     }
 
