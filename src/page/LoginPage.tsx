@@ -9,6 +9,10 @@ function SignPage (): JSX.Element {
   const [errMsg, setErrMsg] = useState('')
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
+    const initValues = (): void => {
+      target.account.value = ''
+      target.password.value = ''
+    }
     const target = e.target as typeof e.target & {
       account: { value: string }
       password: { value: string }
@@ -23,6 +27,7 @@ function SignPage (): JSX.Element {
     }).catch((err) => {
       setErrMsg(err.message)
     })
+    initValues()
   }
   if (cookies.token !== undefined) {
     console.log(cookies.token)

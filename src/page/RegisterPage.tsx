@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
 import { signUp } from '../server/aixos'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
 import register from '../assets/register.png'
 
 function RegisterPage (): JSX.Element {
+  const [cookies] = useCookies(['token'])
   const [errMsg, setErrMsg] = useState('')
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
+    const initValues = (): void => {
+      target.account.value = ''
+      target.password.value = ''
+      target.passwordAgain.value = ''
+    }
     const target = e.target as typeof e.target & {
       account: { value: string }
       password: { value: string }
@@ -24,8 +31,15 @@ function RegisterPage (): JSX.Element {
     } else {
       setErrMsg('password err')
     }
+    initValues()
   }
-  return (
+  if (cookies.token !== undefined) {
+    console.log(cookies.token)
+    return <Navigate to='/' />
+  } else if (errMsg === 'success') {
+    return <Navigate to='/login' />
+  } else {
+    return (
     <div className='fixed w-full h-full flex flex-col -right-1/4 items-center'>
       {/* <p className='fontsize-bigtitle font-Alata mb-4'>register</p> */}
       <form className='w-[66.6%] h-full bg-gray-200 bg-opacity-50 flex flex-col items-center justify-center' onSubmit={handleSubmit}>
@@ -43,7 +57,8 @@ function RegisterPage (): JSX.Element {
       </form>
 
     </div>
-  )
+    )
+  }
 }
 
 export default RegisterPage

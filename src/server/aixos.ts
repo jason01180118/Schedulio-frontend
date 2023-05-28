@@ -5,7 +5,7 @@ const instance = axios.create({
 })
 
 export const sendMail = async (mail: string): Promise<AxiosResponse<any, any>> => {
-  return await instance.get('/mail/invite', {
+  return await instance.get('/mail/send', {
     params: {
       token: process.env.REACT_APP_TOKEN,
       email: mail
@@ -29,4 +29,8 @@ export const signUp = async (account: string, password: string): Promise<AxiosRe
       password
     }
   })
+}
+
+export const addCalendar = async (): Promise<AxiosResponse<any, any>> => {
+  return await instance.get('/add_calendar')
 }

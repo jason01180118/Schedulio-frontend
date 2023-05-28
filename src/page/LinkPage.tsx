@@ -6,8 +6,12 @@ function LinkPage (): JSX.Element {
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setValue(e.target.value)
   }
+  const initValues = (): void => {
+    setValue('')
+  }
   const testMail = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
+    initValues()
     sendMail(value).then((res) => {
       console.log(res)
     }).catch((err) => {
