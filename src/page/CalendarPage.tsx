@@ -66,7 +66,7 @@ function CalendarPage (): JSX.Element {
         {
          account === undefined
          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-           ? <a className='my-3 w-[6%] h-[5%] fontsize-content font-Alata flex justify-center items-center bg-blue-300 rounded-3xl shadow-lg' href={`http://127.0.0.1:8000/add_email?session=${cookies.session}`}>+add</a>
+           ? <a className='my-3 w-[6%] h-[5%] fontsize-content font-Alata flex justify-center items-center bg-blue-300 rounded-3xl shadow-lg' href={`${process.env.REACT_APP_API_URL}/add_email?session=${cookies.session}`}>+add</a>
            : <></>
         }
         {
