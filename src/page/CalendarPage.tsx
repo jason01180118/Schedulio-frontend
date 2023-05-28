@@ -29,6 +29,7 @@ function CalendarPage (): JSX.Element {
     }).catch((err) => { console.log(err) })
   }, [])
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault()
     const target = e.target as typeof e.target & {
       title: { value: string }
       content: { value: string }
