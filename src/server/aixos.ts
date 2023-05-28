@@ -13,7 +13,7 @@ export const sendMail = async (mail: string): Promise<AxiosResponse<any, any>> =
   })
 }
 
-export const sendInvite = async (session: string, title: string, content: string, startDate: Date, endDate: Date, account: string): Promise<AxiosResponse<any, any>> => {
+export const sendInvite = async (session: string, title: string, content: string, startDate: string, endDate: string, account: string): Promise<AxiosResponse<any, any>> => {
   return await instance.get('/mail/invite', {
     params: { session },
     data: {
