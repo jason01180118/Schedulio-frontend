@@ -54,8 +54,8 @@ function CalendarPage (): JSX.Element {
     })
   }, [schedulerData])
   return (
-    <div className='absolute w-full h-[92%] flex flex-col items-center overflow-y-scroll'>
-      <p className='fontsize-bigtitle text-black font-Alata mb-4 text-left'>{account === undefined ? 'My' : account} Calendar</p>
+    <div className='absolute top-[15%] w-full h-[92%] flex flex-col items-center overflow-y-scroll'>
+      <p className='fontsize-bigtitle text-black left-[5%] font-Alata mb-4 text-left'>{account === undefined ? 'My' : account} Calendar</p>
       <Paper className='w-[90%] h-[80%]'>
         <Scheduler data={schedulerData}>
           <ViewState/>
@@ -76,13 +76,25 @@ function CalendarPage (): JSX.Element {
       {
       cookies.session !== undefined && account !== undefined
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        ? <form className='absolute top-[88%] my-3 w-full h-[80%] flex flex-col justify-center items-center' onSubmit={handleSubmit}>
-            <p className='fontsize-title font-Alata mb-1'>invite</p>
-            <label className='fontsize-content font-Alata mb-1' htmlFor='title'>title</label>
-            <input className='fontsize-content font-Alata mb-2 w-[40%] h-[5%] mx-12 flex justify-center items-center rounded-3xl bg-white bg-opacity-80' name='title' type='text'></input>
-            <label className='fontsize-content font-Alata mb-1' htmlFor='content'>content</label>
-            <textarea className='fontsize-content font-Alata mb-4 w-[40%] h-[5%] mx-12 flex justify-center items-center rounded-3xl bg-white bg-opacity-80' name='content'></textarea>
-            <input className='fontsize-title font-Alata mb-2 w-[10%] h-[5%] mx-12 flex justify-center items-center bg-green-200 rounded-3xl shadow-md' type='submit' value="Sign In"></input>
+        ? <form className='absolute top-[80%] w-full h-full flex flex-col justify-center items-center' onSubmit={handleSubmit}>
+            <p className='absolute top-[12%] left-[5%] fontsize-bigtitle font-Alata flex'>Send Your Reservation</p>
+            <div className='absolute top-[20%] w-[90%] h-[55%] flex flex-col justify-start items-center bg-white bg-opacity-80 rounded-3xl'>
+              <div className='absolute top-[20%] my-4 w-[90%] h-[70%] flex flex-col justify-start items-start'>
+              <div className='flex flex-vol w-full'>
+              <label className='fontsize-content font-Alata mb-4' htmlFor='title'>Title</label>
+              <input className='fontsize-content font-Alata mb-4 w-full h-[90%] mx-6 flex justify-center items-center bg-white' name='title' type='text'></input>
+              </div>
+              <div className='flex flex-vol w-full'>
+              <label className='fontsize-content font-Alata mb-4' htmlFor='title'>Start Time</label>
+              </div>
+              <div className='flex flex-vol w-full'>
+              <label className='fontsize-content font-Alata mb-4' htmlFor='title'>End Time</label>
+              </div>
+              <label className='fontsize-content font-Alata mb-4 w-full' htmlFor='content'>Describtion</label>
+              <textarea className='fontsize-content font-Alata mb-4 left-full mb-4 w-[95%] h-full mx-10 justify-start items-start bg-white' name='content'></textarea>
+              <input className='fontsize-title font-Alata mb-4 w-full h-[20%] flex justify-center items-center underline' type='submit' value="Send Reservation"></input>
+              </div>
+            </div>
           </form>
         : <></>
       }
