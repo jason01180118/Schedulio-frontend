@@ -21,7 +21,7 @@ function SignPage (): JSX.Element {
     const password = target.password.value
     logIn(account, password).then((res) => {
       console.log(res.data)
-      setCookie('session', res.data, { maxAge: 3600 })
+      setCookie('session', res.data, { maxAge: 3600, sameSite: 'strict' })
       console.log(cookies.session)
       setErrMsg('success')
     }).catch((err) => {
