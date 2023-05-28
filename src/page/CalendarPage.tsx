@@ -7,7 +7,7 @@ import {
   Appointments,
   Toolbar,
   DateNavigator,
-  TodayButton, ConfirmationDialog, AppointmentTooltip, AppointmentForm, EditRecurrenceMenu
+  TodayButton, ConfirmationDialog, AppointmentTooltip, AppointmentForm, EditRecurrenceMenu, AllDayPanel
 } from '@devexpress/dx-react-scheduler-material-ui'
 import { getCalendar } from '../server/aixos'
 import { useCookies } from 'react-cookie'
@@ -76,6 +76,7 @@ function CalendarPage (): JSX.Element {
           <AppointmentTooltip
           />
           <AppointmentForm readOnly/>
+          <AllDayPanel />
         </Scheduler>
       </Paper>
     </div>
